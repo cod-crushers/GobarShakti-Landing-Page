@@ -77,3 +77,47 @@ span {
     font-weight: bold;
     font-size: 16px;
 }
+/* Mobile view styles */
+@media screen and (max-width: 768px) {
+    .nav__menu {
+        display: none;  /* Menu hidden by default */
+        width: 100%;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        padding-top: 60px;
+        text-align: center;
+        z-index: 999;
+        flex-direction: column;
+    }
+
+    .nav__menu.active {
+        display: block;  /* Show menu when 'active' class is added */
+    }
+
+    .nav__item {
+        margin: 10px 0;
+    }
+
+    .nav__toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav__link {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .nav__close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+    }
+}
+
