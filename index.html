@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/NPK.CSS">
     <link href="https://cdn.jsdelivr.net/npm/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2355/2355260.png">
+
     <title>GobarShakti - CodCrushers Landing Page</title>
     <style>
         /* Default styles for navigation (desktop view) */
@@ -54,6 +56,7 @@
                 color: #fff;
                 text-decoration: none;
             }
+
             .nav__close {
                 position: absolute;
                 top: 20px;
@@ -83,7 +86,7 @@
                         <a href="#Products" class="nav__link">Products</a>
                         <ul class="dropdown">
                             <li><a href="#NPK-Sensor" class="dropdown__link">NPK Soil Sensor</a></li>
-                            <li><a href="#GobarShakti-Kit" class="dropdown__link">GobarShakti Kit</a></li>
+                            <li><a href="https://cod-crushers.github.io/GobarShakti/" class="dropdown__link">GobarShakti Kit</a></li>
                         </ul>
                     </li>
                     <li class="nav__item"><a href="https://forms.gle/FsJkLpNFhaPPNrPx9" class="nav__link">Contact</a></li>
@@ -108,7 +111,7 @@
             <h2 class="section-title">About</h2>
             <div class="about__container bd-grid">
                 <div class="about__img">
-                    <img src="assets/front.jpg" alt="">
+                    <img src="assets/front.jpg" alt="GobarShakti Image">
                 </div>
                 <div>
                     <h2 class="about__subtitle">What is GobarShakti?</h2>
@@ -202,22 +205,35 @@
             </style>
         </section>
     </main>
-
+    
+    <script src="scripts/script.js"></script>
     <script>
+        // Get the elements
         const navToggle = document.getElementById("nav-toggle");
         const navMenu = document.getElementById("nav-menu");
         const navClose = document.getElementById("nav-close");
+        const navItems = document.querySelectorAll(".nav__item");
     
-        // Show menu on toggle button click
-        navToggle.addEventListener("click", function () {
-            navMenu.classList.toggle("active");
+        // Toggle the menu when the hamburger icon is clicked
+        navToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");  // Toggle the 'active' class to show/hide menu
         });
     
-        // Close menu on cross button click
-        navClose.addEventListener("click", function () {
-            navMenu.classList.remove("active");
+        // Close the menu when the close button is clicked
+        navClose.addEventListener("click", () => {
+            navMenu.classList.remove("active");  // Remove 'active' to hide the menu
+        });
+    
+        // Close the menu when a menu item is clicked in mobile view
+        navItems.forEach(item => {
+            item.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {  // Only for mobile view
+                    navMenu.classList.remove("active");  // Close the menu
+                }
+            });
         });
     </script>
+    
 
 </body>
 
