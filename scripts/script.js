@@ -23,46 +23,65 @@ function checkNPK() {
     const phosphorus = parseFloat(document.getElementById("phosphorus").value);
     const potassium = parseFloat(document.getElementById("potassium").value);
 
-    const optimalRanges = {
-        N: { min: 1.5, max: 4 },
-        P: { min: 20, max: 40 },
-        K: { min: 150, max: 300 }
+    const recommendations = {
+        allPurpose: { N: [1, 3], P: [3, 4], K: [2, 2] },
+        vegetative: { N: [3, 4], P: [1, 2], K: [2, 3] },
+        flowering: { N: [2, 5], P: [3, 10], K: [4, 10] },
+        rootDevelopment: { N: [1, 2], P: [2, 3], K: [3, 5] },
+        microbialHealth: { N: [1, 2], P: [2, 3], K: [2, 3] },
     };
 
     let resultText = "";
 
-    // Nitrogen (N) suggestion
-    if (nitrogen >= optimalRanges.N.min && nitrogen <= optimalRanges.N.max) {
-        resultText += "<span style='color: green;'>Nitrogen (N): Optimal</span><br>";
-    } else if (nitrogen < optimalRanges.N.min) {
-        resultText += "<span style='color: yellow;'>Nitrogen (N): Moderate</span><br>";
-        resultText += "<span style='color: yellow;'>Suggested: Add ammonium nitrate or urea to increase nitrogen levels.</span><br>";
+    // Nitrogen (N) analysis
+    if (nitrogen >= recommendations.allPurpose.N[0] && nitrogen <= recommendations.allPurpose.N[1]) {
+        resultText += "<span style='color: green;'>Nitrogen (N): Optimal for general growth</span><br>";
+    } else if (nitrogen < recommendations.allPurpose.N[0]) {
+        resultText += "<span style='color: yellow;'>Nitrogen (N): Low</span><br>";
+        resultText += "<span style='color: yellow;'>Suggested: Add green waste or legume residues to increase nitrogen levels.</span><br>";
     } else {
         resultText += "<span style='color: red;'>Nitrogen (N): High</span><br>";
-        resultText += "<span style='color: red;'>Suggested: Add nitrogen inhibitors or reduce nitrogen-rich fertilizers.</span><br>";
+        resultText += "<span style='color: red;'>Suggested: Mix with carbon-rich material to lower nitrogen levels.</span><br>";
     }
 
-    // Phosphorus (P) suggestion
-    if (phosphorus >= optimalRanges.P.min && phosphorus <= optimalRanges.P.max) {
-        resultText += "<span style='color: green;'>Phosphorus (P): Optimal</span><br>";
-    } else if (phosphorus < optimalRanges.P.min) {
-        resultText += "<span style='color: yellow;'>Phosphorus (P): Moderate</span><br>";
-        resultText += "<span style='color: yellow;'>Suggested: Add rock phosphate or superphosphate to increase phosphorus levels.</span><br>";
+    // Phosphorus (P) analysis
+    if (phosphorus >= recommendations.allPurpose.P[0] && phosphorus <= recommendations.allPurpose.P[1]) {
+        resultText += "<span style='color: green;'>Phosphorus (P): Optimal for general growth</span><br>";
+    } else if (phosphorus < recommendations.allPurpose.P[0]) {
+        resultText += "<span style='color: yellow;'>Phosphorus (P): Low</span><br>";
+        resultText += "<span style='color: yellow;'>Suggested: Add bone meal, rock phosphate, or powdered fish bones to increase phosphorus levels.</span><br>";
     } else {
         resultText += "<span style='color: red;'>Phosphorus (P): High</span><br>";
-        resultText += "<span style='color: red;'>Suggested: Reduce phosphorus applications or use a phosphorus binder.</span><br>";
+        resultText += "<span style='color: red;'>Suggested: Dilute with low-phosphorus compost to reduce levels.</span><br>";
     }
 
-    // Potassium (K) suggestion
-    if (potassium >= optimalRanges.K.min && potassium <= optimalRanges.K.max) {
-        resultText += "<span style='color: green;'>Potassium (K): Optimal</span><br>";
-    } else if (potassium < optimalRanges.K.min) {
-        resultText += "<span style='color: yellow;'>Potassium (K): Moderate</span><br>";
-        resultText += "<span style='color: yellow;'>Suggested: Add potassium sulfate or potassium chloride to increase potassium levels.</span><br>";
+    // Potassium (K) analysis
+    if (potassium >= recommendations.allPurpose.K[0] && potassium <= recommendations.allPurpose.K[1]) {
+        resultText += "<span style='color: green;'>Potassium (K): Optimal for general growth</span><br>";
+    } else if (potassium < recommendations.allPurpose.K[0]) {
+        resultText += "<span style='color: yellow;'>Potassium (K): Low</span><br>";
+        resultText += "<span style='color: yellow;'>Suggested: Add wood ash or composted fruit waste to increase potassium levels.</span><br>";
     } else {
         resultText += "<span style='color: red;'>Potassium (K): High</span><br>";
-        resultText += "<span style='color: red;'>Suggested: Reduce potassium-rich fertilizers or use a potassium inhibitor.</span><br>";
+        resultText += "<span style='color: red;'>Suggested: Mix with low-potassium organic matter like leaf mold.</span><br>";
     }
 
     document.getElementById("suggestionResult").innerHTML = resultText;
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.getElementById("nav-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    const navClose = document.getElementById("nav-close");
+
+    if (navToggle && navMenu && navClose) {
+        // Show menu on toggle button click
+        navToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+        });
+
+        // Close menu on cross button click
+        navClose.addEventListener("click", function () {
+            navMenu.classList.remove("active");
+        });
+    }
+});
