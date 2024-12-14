@@ -68,20 +68,41 @@ function checkNPK() {
 
     document.getElementById("suggestionResult").innerHTML = resultText;
 }
-document.addEventListener("DOMContentLoaded", function () {
-    const navToggle = document.getElementById("nav-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    const navClose = document.getElementById("nav-close");
+// Get the elements
+const navToggle = document.getElementById("nav-toggle");
+const navMenu = document.getElementById("nav-menu");
+const navClose = document.getElementById("nav-close");
 
-    if (navToggle && navMenu && navClose) {
-        // Show menu on toggle button click
-        navToggle.addEventListener("click", function () {
-            navMenu.classList.toggle("active");
-        });
+// Toggle the menu when the hamburger icon is clicked
+navToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+});
 
-        // Close menu on cross button click
-        navClose.addEventListener("click", function () {
-            navMenu.classList.remove("active");
-        });
+// Remove the close button for desktop view
+document.addEventListener("DOMContentLoaded", () => {
+    const screenWidth = window.innerWidth;
+    
+    // Hide close button on desktop
+    if (screenWidth > 768) {
+        navClose.style.display = "none";
     }
+
+    // Ensure responsive behavior on resize
+    window.addEventListener("resize", () => {
+        const currentWidth = window.innerWidth;
+        
+        if (currentWidth > 768) {
+            navClose.style.display = "none";
+            navMenu.classList.remove("active");
+        }
+    });
+});
+
+// Close the menu when a menu item is clicked in mobile view
+document.querySelectorAll(".nav__link").forEach(link => {
+    link.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+            navMenu.classList.remove("active");
+        }
+    });
 });
