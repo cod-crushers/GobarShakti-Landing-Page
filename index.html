@@ -1,0 +1,222 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A minimalist and responsive digital portfolio to showcase skills, projects, and personal brand. Designed with clear visuals and intuitive navigation for an engaging user experience.">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/NPK.CSS">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <title>GobarShakti - CodCrushers Landing Page</title>
+    <style>
+        /* Default styles for navigation (desktop view) */
+        .nav__menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav__item {
+            margin-right: 20px;
+        }
+
+        /* Mobile view styles */
+        @media screen and (max-width: 768px) {
+            .nav__menu {
+                display: none;
+                width: 100%;
+                background-color: #333;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                padding-top: 60px;
+                text-align: center;
+                z-index: 999;
+                flex-direction: column;
+            }
+
+            .nav__item {
+                margin: 10px 0;
+            }
+
+            .nav__toggle {
+                display: block;
+                cursor: pointer;
+            }
+
+            .nav__menu.active {
+                display: block;
+            }
+
+            .nav__link {
+                color: #fff;
+                text-decoration: none;
+            }
+            .nav__close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 30px;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">CodCrushers</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item">
+                        <a href="#Products" class="nav__link">Products</a>
+                        <ul class="dropdown">
+                            <li><a href="#NPK-Sensor" class="dropdown__link">NPK Soil Sensor</a></li>
+                            <li><a href="#GobarShakti-Kit" class="dropdown__link">GobarShakti Kit</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__item"><a href="https://forms.gle/FsJkLpNFhaPPNrPx9" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title">Hi,<br> This is <div class="home__title-color">CodCrushers<br> </div>
+            </div>
+        </section>
+
+        <section class="about section" id="about">
+            <h2 class="section-title">About</h2>
+            <div class="about__container bd-grid">
+                <div class="about__img">
+                    <img src="assets/front.jpg" alt="">
+                </div>
+                <div>
+                    <h2 class="about__subtitle">What is GobarShakti?</h2>
+                    <p class="about__text">GOBARShakti is your partner in optimizing small-scale biogas plants. Our mission is to empower rural communities and biogas plant operators with innovative yet simple control systems that ensure effective digestion and improved biogas yields.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container" id="NPK-Sensor">
+                <h1>NPK Fertilizer Calculator & Suggestion</h1>
+                <div class="form-group">
+                    <label for="nitrogen">Nitrogen (N) in %:</label>
+                    <input type="number" id="nitrogen" placeholder="Enter Nitrogen %">
+                </div>
+                <div class="form-group">
+                    <label for="phosphorus">Phosphorus (P) in %:</label>
+                    <input type="number" id="phosphorus" placeholder="Enter Phosphorus %">
+                </div>
+                <div class="form-group">
+                    <label for="potassium">Potassium (K) in %:</label>
+                    <input type="number" id="potassium" placeholder="Enter Potassium %">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Total weight of fertilizer (kg):</label>
+                    <input type="number" id="weight" placeholder="Enter weight in kg">
+                </div>
+                <button onclick="calculateNPK()">Calculate</button>
+                <div id="result" class="result"></div>
+                <button onclick="checkNPK()">Get Suggestions</button>
+                <div id="suggestionResult" class="result2"></div>
+            </div>
+
+            <style>
+                .container {
+                    max-width: 600px;
+                    margin: 50px auto;
+                    padding: 20px;
+                    background-color: #fff;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    border-radius: 8px;
+                }
+
+                h1 {
+                    text-align: center;
+                }
+
+                .form-group {
+                    margin-bottom: 15px;
+                }
+
+                label {
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                }
+
+                input {
+                    width: 100%;
+                    padding: 10px;
+                    font-size: 16px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                }
+
+                button {
+                    width: 100%;
+                    padding: 10px;
+                    background-color: #9fd712;
+                    color: white;
+                    font-size: 16px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                button:hover {
+                    background-color: #218838;
+                }
+
+                .result {
+                    margin-top: 20px;
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: bold;
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    background-color: #f9f9f9;
+                }
+            </style>
+        </section>
+    </main>
+
+    <script>
+        const navToggle = document.getElementById("nav-toggle");
+        const navMenu = document.getElementById("nav-menu");
+        const navClose = document.getElementById("nav-close");
+    
+        // Show menu on toggle button click
+        navToggle.addEventListener("click", function () {
+            navMenu.classList.toggle("active");
+        });
+    
+        // Close menu on cross button click
+        navClose.addEventListener("click", function () {
+            navMenu.classList.remove("active");
+        });
+    </script>
+
+</body>
+
+</html>
